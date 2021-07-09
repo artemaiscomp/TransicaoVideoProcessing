@@ -22,11 +22,11 @@ void setup() {
 }
 
 void draw() {
-  String name = nf(indiceFrame++, 5) + ".jpg";
+  //String name = nf(indiceFrame++, 5) + ".jpg";
   controladorAtual.update();
   
-  PImage frameAtual = get();
-  frameAtual.save(name);
+  //PImage frameAtual = get();
+  //frameAtual.save(name);
 }
 
 // Called every time a new frame is available to read
