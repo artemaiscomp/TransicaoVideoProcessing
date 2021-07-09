@@ -3,13 +3,13 @@ import processing.video.*;
 Movie original, aplicacao;
 
 ControladorBlending controladores[], controladorAtual;
-int indiceControlador;
+int indiceControlador, indiceFrame;
 
 void setup() {
-  size(1920, 1080);
+  size(470, 360);
 
-  original = new Movie(this, "/home/rafael/original.mp4");
-  aplicacao = new Movie (this, "/home/rafael/aplicacao.m4v");
+  original = new Movie(this, "../videos/original.mp4");
+  aplicacao = new Movie (this, "../videos/aplicacao.mp4");
   
   original.loop();
   aplicacao.loop();
@@ -22,7 +22,11 @@ void setup() {
 }
 
 void draw() {
+  String name = nf(indiceFrame++, 5) + ".jpg";
   controladorAtual.update();
+  
+  PImage frameAtual = get();
+  frameAtual.save(name);
 }
 
 // Called every time a new frame is available to read
