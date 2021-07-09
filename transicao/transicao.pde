@@ -6,19 +6,23 @@ ControladorBlending controladores[], controladorAtual;
 int indiceControlador, indiceFrame;
 
 void setup() {
+  print(sketchPath());
   size(470, 360);
 
-  original = new Movie(this, "../videos/original.mp4");
-  aplicacao = new Movie (this, "../videos/aplicacao.mp4");
+  original = new Movie(this, sketchPath() + "/../videos/original.mp4");
+  aplicacao = new Movie (this, sketchPath() + "/../videos/aplicacao.mp4");
   
   original.loop();
   aplicacao.loop();
   
   controladores = new ControladorBlending[]{new ControladorAlpha(),
-     new ControladorEixo(true), new ControladorEixo(false)};
+     new ControladorEixo(true), new ControladorEixo(false),
+     new ControladorLupa(100)};
   
   indiceControlador = 0;
   controladorAtual = controladores[0];
+  
+   frame.setTitle("Espaço para mudar de modo. " + controladorAtual.explique() );
 }
 
 void draw() {
@@ -35,8 +39,10 @@ void movieEvent(Movie m) {
 }
 
 void keyPressed(){
-  if (key == ' ')
+  if (key == ' '){
     proximoControlador();
+    frame.setTitle("Espaço para mudar de modo. " + controladorAtual.explique() );
+  }
 }
 
 void proximoControlador(){
@@ -55,4 +61,6 @@ interface ControladorBlending{
   
   /* Resete qualquer estado modificado para o padrão. Exemplo: se você muda o canal alpha, deixe 100% opaco novamente */
   void reset();
+  
+  String explique();
 }

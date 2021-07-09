@@ -17,4 +17,8 @@ class ControladorAlpha implements ControladorBlending{
   void reset(){
     tint(255, 255);
   }
+  
+  String explique(){
+    return "Movimente o mouse lateralmente.";
+  }
 }

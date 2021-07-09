@@ -39,4 +39,10 @@ class ControladorEixo implements ControladorBlending{
   
   void reset(){
   }
+  
+  String explique(){
+    if (this.vertical)
+      return "Movimente o mouse verticalmente.";
+    return "Movimente o mouse horizontalmente.";
+  }
 }
